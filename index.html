@@ -36,6 +36,18 @@
     </style>
 </head>
 <body>
+    <script>
+        function gerarNumero() {
+      var numeroAleatorio = Math.floor(Math.random() * 6) + 1;
+
+      document.getElementById('resultado').textContent = 'Resultado: ' + numeroAleatorio;
+    }
+    function gerarNumeroPc(){
+        var numeroAleatorioPc = Math.floor(Math.random() * 6) + 1;
+        document.getElementById('resultadoPc').textContent = 'Resultado: ' + numeroAleatorioPc;
+    }
+
+    </script>
     <main>
         <h1>Esbugalhado - Jogo do Beto Carneiro</h1>
 
@@ -59,9 +71,14 @@
                         <td id="c18"></td>
                         <td id="c19"></td>
                     </tr>
-                </table>
-            </div>
+    
+                    <button onclick="gerarNumero()">Gerar Número</button>
+                    <p id="resultado">Resultado: </p>
 
+                </table>
+               
+            </div>
+            
             <!-- Área do jogador 2 -->
             <div class="area-jogador">
                 <h2>Computador</h2>
@@ -81,6 +98,9 @@
                         <td id="c28"></td>
                         <td id="c29"></td>
                     </tr>
+            
+                    <button onclick="gerarNumeroPc()">Gerar Número Máquina</button>
+                    <p id="resultadoPc">Resultado: </p>
                 </table>
             </div>
         </div>
