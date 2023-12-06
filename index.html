@@ -32,21 +32,31 @@
             height: 50px;
             text-align: center;
             font-size: 20px;
+             width: 50px;  /* congelando a largura */
+            cursor: pointer; /* Adicionando cursor ao passar sobre a célula */
         }
     </style>
 </head>
 <body>
     <script>
+        var numeroAleatorio;
+
         function gerarNumero() {
-      var numeroAleatorio = Math.floor(Math.random() * 6) + 1;
+            numeroAleatorio = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('resultado').textContent = 'Resultado: ' + numeroAleatorio;
+        }
 
-      document.getElementById('resultado').textContent = 'Resultado: ' + numeroAleatorio;
-    }
-    function gerarNumeroPc(){
-        var numeroAleatorioPc = Math.floor(Math.random() * 6) + 1;
-        document.getElementById('resultadoPc').textContent = 'Resultado: ' + numeroAleatorioPc;
-    }
+        function gerarNumeroPc(){
+            var numeroAleatorioPc = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('resultadoPc').textContent = 'Resultado: ' + numeroAleatorioPc;
+        }
 
+        function armazenarNumero(celulaId) { // Esse parâmetro representa o ID da célula da tabela onde queremos armazenar o número.
+            if (numeroAleatorio) { //Este é um teste condicional que verifica se a variável numeroAleatorio tem um valor
+                document.getElementById(celulaId).textContent = numeroAleatorio;//para obter o elemento HTML com o ID especificado pelo parâmetro 
+                numeroAleatorio = null;  // Isso impede que o mesmo número seja colocado em mais de uma célula
+            } 
+        }
     </script>
     <main>
         <h1>Esbugalhado - Jogo do Beto Carneiro</h1>
@@ -57,26 +67,27 @@
                 <h2>Jogador 1</h2>
                 <table>
                     <tr>
-                        <td id="c11"></td>
-                        <td id="c12"></td>
-                        <td id="c13"></td>
+                        <td id="c11" onclick="armazenarNumero('c11')"></td> <!--quando o usuário clicar em uma das casinhas, a função armazenarNumero será chamada, e ela usará o ID da célula clicada para identificar e armazenar o número-->
+                        <td id="c12" onclick="armazenarNumero('c12')"></td>
+                        <td id="c13" onclick="armazenarNumero('c13')"></td>
                     </tr>
                     <tr>
-                        <td id="c14"></td>
-                        <td id="c15"></td>
-                        <td id="c16"></td>
+                        <td id="c14" onclick="armazenarNumero('c14')"></td>
+                        <td id="c15" onclick="armazenarNumero('c15')"></td>
+                        <td id="c16" onclick="armazenarNumero('c16')"></td>
                     </tr>
                     <tr>
-                        <td id="c17"></td>
-                        <td id="c18"></td>
-                        <td id="c19"></td>
+                        <td id="c17" onclick="armazenarNumero('c17')"></td>
+                        <td id="c18" onclick="armazenarNumero('c18')"></td>
+                        <td id="c19" onclick="armazenarNumero('c19')"></td>
                     </tr>
-    
+
                     <button onclick="gerarNumero()">Gerar Número</button>
                     <p id="resultado">Resultado: </p>
 
                 </table>
                
+                
             </div>
             
             <!-- Área do jogador 2 -->
@@ -105,6 +116,5 @@
             </div>
         </div>
     </main>
-    
 </body>
 </html>
