@@ -7,6 +7,9 @@
     <script src="main.js" type="module" ></script> 
 
     <style>
+        body{
+            background-color: brown;
+        }
         .tabuleiro {
             width: 600px;
             margin: 0 auto;
@@ -18,7 +21,7 @@
             width: 200px;
             margin: 0;
             padding: 0;
-            border: 1px solid #000;
+            border: 1px solid #778899;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -29,20 +32,42 @@
         }
 
         td {
-            border: 1px solid #000;
+            border: 1px solid  #778899;
             height: 50px;
             text-align: center;
             font-size: 20px;
              width: 50px;  /* congelando a largura */
             cursor: pointer; /* Adicionando cursor ao passar sobre a célula */
         }
+        .texto-orientacao{
+
+            text-align: center;
+        }
+
+        h1{
+            color: white;
+        }
+        h2{
+            color: white;
+        }
+        p{
+            color: beige
+        }
+
+        
     </style>
 </head>
 <body>
     
     <main>
-        <h1>Esbugalhado - Jogo do Beto Carneiro</h1>
-
+        <div class = "texto-orientacao">
+            <h1>Esbugalhado - Jogo do Beto Carneiro</h1>
+            <p>O jogo Consiste em 2 jogadores que irão utilizar</p>
+            <p>o Dado para tirar valores e, o jogo acaba quando</p>
+            <p>um dos jogadores completa a tabela. Ao final, é</p>
+            <p>feito um calculo e o jogador com maior</p>
+            <p>pontuação vence!</p>
+     </div>
         <div class="tabuleiro">
             <!-- Área do jogador 1 -->
             <div class="area-jogador">
