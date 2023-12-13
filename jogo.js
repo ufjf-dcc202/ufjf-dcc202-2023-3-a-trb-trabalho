@@ -1,60 +1,112 @@
 // jogo.js
+
 function gerarNumeroAleatorio() {
     return Math.floor(Math.random() * 6) + 1;
 }
+// Inicializando os vetores para as colunas de cada jogador
+const jogador1Coluna1 = [[], [], []];
+const jogador1Coluna2 = [[], [], []];
+const jogador1Coluna3 = [[], [], []];
+
+const jogador2Coluna1 = [[], [], []];
+const jogador2Coluna2 = [[], [], []];
+const jogador2Coluna3 = [[], [], []];
 
 let jogadorAtual = 1; // Inicializa com o jogador 1
 
 export function gerarNumero() {
     const numeroAleatorio = gerarNumeroAleatorio();
-    const celulas = document.querySelectorAll('.area-jogador1 table td');
 
-    // pegar apenas as células que estão vazias
-    const celulasVazias = Array.from(celulas).filter(celula => !celula.textContent.trim());
+    // Exibe mensagem indicando que o jogador deve escolher uma coluna
+    document.getElementById('mensagem').textContent = 'Jogador 1, escolha uma coluna .';
 
-    if (celulasVazias.length > 0) {
-        // Escolhe aleatoriamente uma célula vazia 
-        const celulaAleatoria = celulasVazias[Math.floor(Math.random() * celulasVazias.length)];
+     // Atualiza o conteúdo do elemento com o ID 'resultado'
+    document.getElementById('resultado').textContent = 'Resultado ' + numeroAleatorio;
 
-        // conteúdo da célula escolhida recebe o numero aleatorio 
-        celulaAleatoria.textContent = numeroAleatorio;
+    // Adiciona evento de clique a cada célula da tabela do jogador 1
+    const celulasJogador1 = document.querySelectorAll('.area-jogador1 table td');
+    celulasJogador1.forEach((celula, index) => {
+        celula.addEventListener('click', function escolherColuna() {
+           
 
-        // Atualiza o conteúdo do elemento com o ID 'resultado'
-        document.getElementById('resultado').textContent = 'Resultado  ' +  numeroAleatorio;
+            // Seleciona a coluna correspondente ao índice
+            let coluna;
+            if (index < 3) {
+                coluna = jogador1Coluna1;
+            } else if (index < 6) {
+                coluna = jogador1Coluna2;
+            } else {
+                coluna = jogador1Coluna3;
+            }
 
-        // Troca para o próximo jogador
-        jogadorAtual = 2;
+            // Adiciona o número à coluna escolhida
+            coluna[index % 3].push(numeroAleatorio);
 
-        // Exibe mensagem indicando a vez do próximo jogador
-        document.getElementById('mensagem').textContent = 'É a vez do Jogador 2';
-    } else {
-        console.log('Todas as células estão ocupadas.'); // ou outra ação adequada
-    }
+            // Atualiza o conteúdo da célula escolhida com o número aleatório
+            celula.textContent = numeroAleatorio;
+
+        
+
+            // Troca para o próximo jogador
+            jogadorAtual = 2;
+
+            // Remove a mensagem de escolha da coluna
+            document.getElementById('mensagem').textContent = '';
+
+            // Remove o evento de clique das outras células
+            celulasJogador1.forEach(c => c.removeEventListener('click', escolherColuna));
+
+            // Exibe mensagem indicando a vez do próximo jogador
+            document.getElementById('mensagem').textContent = 'É a vez do Jogador 2';
+        });
+    });
 }
 
+
+
 export function gerarNumeroPc() {
-    const numeroAleatorioPc = gerarNumeroAleatorio();
-    const celulasPc = document.querySelectorAll('.area-jogador  table td');
+    const numeroAleatorio = gerarNumeroAleatorio();
 
-    
-    const celulasVazias = Array.from(celulasPc).filter(celula => !celula.textContent.trim());
+    // Exibe mensagem indicando que o jogador deve escolher uma coluna
+    document.getElementById('mensagem').textContent = 'Jogador 2, escolha uma coluna.';
 
-    if (celulasVazias.length > 0) {
+     // Atualiza o conteúdo do elemento com o ID 'resultado'
+    document.getElementById('resultadoPc').textContent = 'Resultado ' + numeroAleatorio;
+
+    // Adiciona evento de clique a cada célula da tabela do jogador 1
+    const celulasJogador2 = document.querySelectorAll('.area-jogador table td');
+    celulasJogador2.forEach((celula, index) => {
+        celula.addEventListener('click', function escolherColuna() {
+            
+            // Seleciona a coluna correspondente ao índice
+            let coluna;
+            if (index < 3) {
+                coluna = jogador2Coluna1;
+            } else if (index < 6) {
+                coluna = jogador2Coluna2;
+            } else {
+                coluna = jogador2Coluna3;
+            }
+
+            // Adiciona o número à coluna escolhida
+            coluna[index % 3].push(numeroAleatorio);
+
+            // Atualiza o conteúdo da célula escolhida com o número aleatório
+            celula.textContent = numeroAleatorio;
+
         
-        const celulaAleatoria = celulasVazias[Math.floor(Math.random() * celulasVazias.length)];
 
-       
-        celulaAleatoria.textContent = numeroAleatorioPc;
+            // Troca para o próximo jogador
+            jogadorAtual = 1;
 
-        
-        document.getElementById('resultadoPc').textContent = 'Resultado ' +  numeroAleatorioPc;
+            // Remove a mensagem de escolha da coluna
+            document.getElementById('mensagem').textContent = '';
 
-       
-        jogadorAtual = 1;
+            // Remove o evento de clique das outras células
+            celulasJogador2.forEach(c => c.removeEventListener('click', escolherColuna));
 
-        
-        document.getElementById('mensagem').textContent = 'É a vez do Jogador 1';
-    } else {
-        console.log('Todas as células estão ocupadas.'); 
-    }
+            // Exibe mensagem indicando a vez do próximo jogador
+            document.getElementById('mensagem').textContent = 'É a vez do Jogador 1';
+        });
+    });
 }
