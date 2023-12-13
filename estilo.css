@@ -1,0 +1,74 @@
+/* cria estilo */
+        body{
+
+            background-image: url(images.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        .tabuleiro {
+            width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .area-jogador1,.area-jogador {
+            width: 200px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #778899;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid  #778899;
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+             width: 50px;  /* congelando a largura */
+            cursor: pointer; /* Adicionando cursor ao passar sobre a célula */
+        }
+        .texto-orientacao{
+
+            text-align: center;
+        }
+
+        h1{
+            color: white;
+        }
+        h2{
+            color: white;
+        }
+        p{
+            color: beige
+        }
+  
+        .mensagem {
+         width: 100%;
+         text-align: center;
+         animation: piscar 0.5s infinite; /* Adiciona a animação de piscar */ 
+         margin-top: 10px; /* Ajuste a margem conforme necessário */
+        }
+        
+        @keyframes piscar {
+    0%, 100% {
+        color: red; /* Cor inicial e final */
+    }
+    25% {
+        color: yellow; /* Cor após 25% da animação */
+    }
+    50% {
+        color: green; /* Cor após 50% da animação */
+    }
+    75% {
+        color: blue; /* Cor após 75% da animação */
+    }
+}
