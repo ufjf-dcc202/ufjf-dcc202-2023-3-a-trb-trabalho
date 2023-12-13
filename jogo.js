@@ -58,6 +58,8 @@ export function gerarNumero() {
 
             // Exibe mensagem indicando a vez do próximo jogador
             document.getElementById('mensagem').textContent = 'É a vez do Jogador 2';
+
+            calcularSomasColunas1();
         });
     });
 }
@@ -107,6 +109,39 @@ export function gerarNumeroPc() {
 
             // Exibe mensagem indicando a vez do próximo jogador
             document.getElementById('mensagem').textContent = 'É a vez do Jogador 1';
+            calcularSomasColunas2();
         });
     });
+
+}
+
+//Função para calcular colunas
+
+
+ function calcularSomasColunas1() {
+    for (let colunaIndex = 0; colunaIndex < 3; colunaIndex++) {
+        const celulasColuna = document.querySelectorAll(`.area-jogador1 table tr td:nth-child(${colunaIndex + 1})`);
+
+        const somaColuna = Array.from(celulasColuna).reduce((acc, celula) => { // reduce para calcular a soma dos valores na coluna.
+            const valorCelula = parseInt(celula.textContent.trim()) || 0; //Convertendo o conteúdo da célula para um número, ou zero se não for um número.
+            const multiplicador = Array.from(celulasColuna).filter(c => parseInt(c.textContent.trim()) === valorCelula).length; //um array a partir das células da coluna e filtrando as células que têm o mesmo valor que a célula atual.
+            return acc + (valorCelula * multiplicador); //acc + ...: Acumulando o resultado da multiplicação na soma acumulativa.
+        }, 0);
+
+        document.getElementById(`somaColunaJogador1_${colunaIndex + 1}`).textContent = `Coluna ${colunaIndex + 1}: ${somaColuna}`;
+    }
+}
+
+function calcularSomasColunas2() {
+    for (let colunaIndex = 0; colunaIndex < 3; colunaIndex++) {
+        const celulasColuna = document.querySelectorAll(`.area-jogador table tr td:nth-child(${colunaIndex + 1})`);
+
+        const somaColuna = Array.from(celulasColuna).reduce((acc, celula) => { // reduce para calcular a soma dos valores na coluna.
+            const valorCelula = parseInt(celula.textContent.trim()) || 0; //Convertendo o conteúdo da célula para um número, ou zero se não for um número.
+            const multiplicador = Array.from(celulasColuna).filter(c => parseInt(c.textContent.trim()) === valorCelula).length; //um array a partir das células da coluna e filtrando as células que têm o mesmo valor que a célula atual.
+            return acc + (valorCelula * multiplicador); //acc + ...: Acumulando o resultado da multiplicação na soma acumulativa.
+        }, 0);
+
+        document.getElementById(`somaColunaJogador2_${colunaIndex + 1}`).textContent = `Coluna ${colunaIndex + 1}: ${somaColuna}`;
+    }
 }
