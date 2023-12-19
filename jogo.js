@@ -68,14 +68,14 @@ export function gerarNumero() {
 
    
 
-export function gerarNumeroPc() {
+export function gerarNumeroJogador2() {
     const numeroAleatorio = gerarNumeroAleatorio();
 
     // Exibe mensagem indicando que o jogador deve escolher uma coluna
     document.getElementById('mensagem').textContent = 'Jogador 2, escolha uma coluna.';
 
      // Atualiza o conteúdo do elemento com o ID 'resultado'
-    document.getElementById('resultadoPc').textContent = 'Dado ' + numeroAleatorio;
+    document.getElementById('resultadoJogador2').textContent = 'Dado ' + numeroAleatorio;
 
     // Adiciona evento de clique a cada célula da tabela do jogador 1
     const celulasJogador2 = document.querySelectorAll('.area-jogador table td');

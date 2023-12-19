@@ -1,5 +1,5 @@
 // main.js
-import { gerarNumero, gerarNumeroPc } from './jogo.js';
+import { gerarNumero, gerarNumeroJogador2 } from './jogo.js';
 
 // Adiciona evento de clique ao botão do jogador 1
 const gerarNumeroBtn = document.getElementById('gerarNumeroBtn');
@@ -8,7 +8,7 @@ gerarNumeroBtn.addEventListener('click', function () {
 });
 
 // Adiciona evento de clique ao botão do jogador 2 
-const gerarNumeroBtnPc = document.getElementById('gerarNumeroBtnPc');
-gerarNumeroBtnPc.addEventListener('click', function () {
-    gerarNumeroPc();
+const gerarNumeroBtnJogador2 = document.getElementById('gerarNumeroBtnJogador2');
+gerarNumeroBtnJogador2.addEventListener('click', function () {
+    gerarNumeroJogador2();
 });
