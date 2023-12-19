@@ -61,7 +61,11 @@ export function gerarNumero() {
 
             calcularSomasColunas1();
             //calcularSomaTotalJogador1();
-       
+            if (todasCelulasPreenchidas()) {
+                   
+                determinarVencedor();
+          }
+      
      });
   });
 }
@@ -112,6 +116,12 @@ export function gerarNumeroJogador2() {
             // Exibe mensagem indicando a vez do próximo jogador
             document.getElementById('mensagem').textContent = 'É a vez do Jogador 1';
             calcularSomasColunas2();
+
+            if (todasCelulasPreenchidas()) {
+                   
+                determinarVencedor();
+          }
+      
         });
     });
 
@@ -153,4 +163,19 @@ function calcularSomasColunas2() {
         document.getElementById(`somaColunaJogador2_${colunaIndex + 1}`).textContent = `Coluna ${colunaIndex + 1}: ${somaColuna}`;
     }
     document.getElementById('somaTotalJogador2').textContent = `Total: ${somaTotalJogador2}`;
+}
+
+function todasCelulasPreenchidas() {
+    const celulas = document.querySelectorAll('.area-jogador1 table td, .area-jogador table td');
+    return Array.from(celulas).every(celula => celula.textContent.trim() !== '');
+}
+function determinarVencedor() {
+    const totalJogador1 = parseInt(document.getElementById('somaTotalJogador1').textContent.split(':')[1]) || 0;
+    const totalJogador2 = parseInt(document.getElementById('somaTotalJogador2').textContent.split(':')[1]) || 0;
+
+    const mensagemVencedor = totalJogador1 > totalJogador2 ? 'Jogador 1 é o vencedor!' :
+                             totalJogador2 > totalJogador1 ? 'Jogador 2 é o vencedor!' :
+                             'O jogo terminou em empate!';
+
+    document.getElementById('mensagem').textContent = mensagemVencedor;
 }
