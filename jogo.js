@@ -45,6 +45,7 @@ export function gerarNumero() {
             // Atualiza o conteúdo da célula escolhida com o número aleatório
             celula.textContent = numeroAleatorio;
 
+            removeValoresIguais(coluna, numeroAleatorio);
         
 
             // Troca para o próximo jogador
@@ -102,6 +103,7 @@ export function gerarNumeroJogador2() {
             // Atualiza o conteúdo da célula escolhida com o número aleatório
             celula.textContent = numeroAleatorio;
 
+            removeValoresIguais(coluna, numeroAleatorio);
         
 
             // Troca para o próximo jogador
@@ -127,6 +129,40 @@ export function gerarNumeroJogador2() {
 
 }
 
+//função para remover valores iguais
+
+function removeValoresIguais(colunaEscolhida, numero) {
+    
+    let colunaOponente = 0;
+
+    switch (colunaEscolhida) {
+        case jogador1Coluna1: 
+            colunaOponente = jogador2Coluna1;
+            break;
+        case jogador1Coluna2: 
+            colunaOponente = jogador2Coluna2;
+            break;
+        case jogador1Coluna3: 
+            colunaOponente = jogador2Coluna3;
+            break;
+        case jogador2Coluna1: 
+            colunaOponente = jogador1Coluna1;
+            break;
+        case jogador2Coluna2: 
+            colunaOponente = jogador1Coluna2;
+            break;
+        case jogador2Coluna3: 
+            colunaOponente = jogador1Coluna3;
+            break;
+    }
+
+    for (let i = 0; i < colunaOponente.length; i++) {
+        if (colunaOponente[i] === numero) {
+            colunaOponente.splice(i, 1);
+            colunaOponente[i].textContent = " ";
+        }
+    }
+}
 
 
 //Função para calcular colunas
