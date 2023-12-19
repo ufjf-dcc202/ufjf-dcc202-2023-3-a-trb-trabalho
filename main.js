@@ -7,7 +7,7 @@ gerarNumeroBtn.addEventListener('click', function () {
     gerarNumero();
 });
 
-// Adiciona evento de clique ao botão do jogador 2 (PC)
+// Adiciona evento de clique ao botão do jogador 2 
 const gerarNumeroBtnPc = document.getElementById('gerarNumeroBtnPc');
 gerarNumeroBtnPc.addEventListener('click', function () {
     gerarNumeroPc();

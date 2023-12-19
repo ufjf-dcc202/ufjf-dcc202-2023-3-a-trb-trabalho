@@ -21,7 +21,7 @@ export function gerarNumero() {
     document.getElementById('mensagem').textContent = 'Jogador 1, escolha uma coluna .';
 
      // Atualiza o conteúdo do elemento com o ID 'resultado'
-    document.getElementById('resultado').textContent = 'Resultado ' + numeroAleatorio;
+    document.getElementById('resultado').textContent = 'Dado ' + numeroAleatorio;
 
     // Adiciona evento de clique a cada célula da tabela do jogador 1
     const celulasJogador1 = document.querySelectorAll('.area-jogador1 table td');
@@ -60,11 +60,13 @@ export function gerarNumero() {
             document.getElementById('mensagem').textContent = 'É a vez do Jogador 2';
 
             calcularSomasColunas1();
-        });
-    });
+            //calcularSomaTotalJogador1();
+       
+     });
+  });
 }
 
-
+   
 
 export function gerarNumeroPc() {
     const numeroAleatorio = gerarNumeroAleatorio();
@@ -73,7 +75,7 @@ export function gerarNumeroPc() {
     document.getElementById('mensagem').textContent = 'Jogador 2, escolha uma coluna.';
 
      // Atualiza o conteúdo do elemento com o ID 'resultado'
-    document.getElementById('resultadoPc').textContent = 'Resultado ' + numeroAleatorio;
+    document.getElementById('resultadoPc').textContent = 'Dado ' + numeroAleatorio;
 
     // Adiciona evento de clique a cada célula da tabela do jogador 1
     const celulasJogador2 = document.querySelectorAll('.area-jogador table td');
@@ -115,10 +117,11 @@ export function gerarNumeroPc() {
 
 }
 
+
+
 //Função para calcular colunas
-
-
- function calcularSomasColunas1() {
+function calcularSomasColunas1() {
+    let somaTotalJogador1=0;
     for (let colunaIndex = 0; colunaIndex < 3; colunaIndex++) {
         const celulasColuna = document.querySelectorAll(`.area-jogador1 table tr td:nth-child(${colunaIndex + 1})`);
 
@@ -127,13 +130,17 @@ export function gerarNumeroPc() {
             const multiplicador = Array.from(celulasColuna).filter(c => parseInt(c.textContent.trim()) === valorCelula).length; //um array a partir das células da coluna e filtrando as células que têm o mesmo valor que a célula atual.
             return acc + (valorCelula * multiplicador); //acc + ...: Acumulando o resultado da multiplicação na soma acumulativa.
         }, 0);
-
+        
+        somaTotalJogador1 += somaColuna;
         document.getElementById(`somaColunaJogador1_${colunaIndex + 1}`).textContent = `Coluna ${colunaIndex + 1}: ${somaColuna}`;
     }
+    document.getElementById('somaTotalJogador1').textContent = `Total: ${somaTotalJogador1}`;
 }
 
 function calcularSomasColunas2() {
+    let somaTotalJogador2=0;
     for (let colunaIndex = 0; colunaIndex < 3; colunaIndex++) {
+        
         const celulasColuna = document.querySelectorAll(`.area-jogador table tr td:nth-child(${colunaIndex + 1})`);
 
         const somaColuna = Array.from(celulasColuna).reduce((acc, celula) => { // reduce para calcular a soma dos valores na coluna.
@@ -141,7 +148,9 @@ function calcularSomasColunas2() {
             const multiplicador = Array.from(celulasColuna).filter(c => parseInt(c.textContent.trim()) === valorCelula).length; //um array a partir das células da coluna e filtrando as células que têm o mesmo valor que a célula atual.
             return acc + (valorCelula * multiplicador); //acc + ...: Acumulando o resultado da multiplicação na soma acumulativa.
         }, 0);
-
+   
+         somaTotalJogador2+=somaColuna;
         document.getElementById(`somaColunaJogador2_${colunaIndex + 1}`).textContent = `Coluna ${colunaIndex + 1}: ${somaColuna}`;
     }
+    document.getElementById('somaTotalJogador2').textContent = `Total: ${somaTotalJogador2}`;
 }
